@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +29,7 @@ public class Artikl implements Serializable {
 	private String proizvodjac;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "artikl")
+	@OneToMany(mappedBy = "artikl", cascade = CascadeType.REMOVE)
 	private List<StavkaPorudzbine> stavke;
 
 	public Artikl() {
