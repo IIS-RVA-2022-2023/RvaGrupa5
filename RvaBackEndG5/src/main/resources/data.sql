@@ -36,15 +36,15 @@ INSERT INTO "artikl"("id", "naziv", "proizvodjac")
 VALUES(nextval('artikl_seq'), 'Puding jagoda', 'CENTROPROIZVOD');
 
 INSERT INTO "porudzbina"("id", "datum", "dobavljac", "isporuceno", "iznos", "placeno")
-VALUES (nextval('porudzbina_seq'), to_date('01.03.2017.', 'dd.mm.yyyy.'), 1, to_date('01.03.2017.', 'dd.mm.yyyy.'), 0, true);
+VALUES (nextval('porudzbina_seq'), to_date('01.03.2017.', 'dd.mm.yyyy.'), 1, to_date('01.03.2017.', 'dd.mm.yyyy.'), 1000, true);
 INSERT INTO "porudzbina"("id", "datum", "dobavljac", "isporuceno", "iznos", "placeno")
-VALUES (nextval('porudzbina_seq'), to_date('21.02.2017.', 'dd.mm.yyyy.'), 2, to_date('03.03.2017.', 'dd.mm.yyyy.'), 0, false);
+VALUES (nextval('porudzbina_seq'), to_date('21.02.2017.', 'dd.mm.yyyy.'), 2, to_date('03.03.2017.', 'dd.mm.yyyy.'), 2000, false);
 INSERT INTO "porudzbina"("id", "datum", "dobavljac", "isporuceno", "iznos", "placeno")
-VALUES (nextval('porudzbina_seq'), to_date('18.02.2017.', 'dd.mm.yyyy.'), 3, to_date('01.03.2017.', 'dd.mm.yyyy.'), 0, true);
+VALUES (nextval('porudzbina_seq'), to_date('18.02.2017.', 'dd.mm.yyyy.'), 3, to_date('01.03.2017.', 'dd.mm.yyyy.'), 3000, true);
 INSERT INTO "porudzbina"("id", "datum", "dobavljac", "isporuceno", "iznos", "placeno")
-VALUES (nextval('porudzbina_seq'), to_date('11.02.2017.', 'dd.mm.yyyy.'), 4, to_date('04.03.2017.', 'dd.mm.yyyy.'), 0, true);
+VALUES (nextval('porudzbina_seq'), to_date('11.02.2017.', 'dd.mm.yyyy.'), 4, to_date('04.03.2017.', 'dd.mm.yyyy.'), 4000, true);
 INSERT INTO "porudzbina"("id", "datum", "dobavljac", "isporuceno", "iznos", "placeno")
-VALUES (nextval('porudzbina_seq'), to_date('01.03.2017.', 'dd.mm.yyyy.'), 4, to_date('03.03.2017.', 'dd.mm.yyyy.'), 0, false);
+VALUES (nextval('porudzbina_seq'), to_date('01.03.2017.', 'dd.mm.yyyy.'), 4, to_date('03.03.2017.', 'dd.mm.yyyy.'), 5000, false);
 
 INSERT INTO "stavka_porudzbine"("id", "porudzbina", "redni_broj", "artikl", "kolicina", "jedinica_mere", "cena")
 VALUES (nextval('stavka_porudzbine_seq'), 1, 1, 1, 20, 'komad', 100);
