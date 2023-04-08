@@ -60,7 +60,7 @@ public class PorudzbinaController {
 	
 	@GetMapping("/dobavljac/{id}")
 	public ResponseEntity<?> getPorudzbinaByDobavljac(@PathVariable long id){
-		Optional<Dobavljac> dobavljac = dobavljacService.getById(id);
+		Optional<Dobavljac> dobavljac = dobavljacService.findById(id);
 		if(dobavljac.isPresent()) {
 			return ResponseEntity.ok(service.getByDobavljac(dobavljac.get()));
 		}else {
