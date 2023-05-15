@@ -1,18 +1,18 @@
-<mat-toolbar color="accent">
+<mat-toolbar color="primary">
     <span class="title-center">Artikl</span>
 </mat-toolbar>
 
   <div class="container mat-elavation-z8">
     <mat-table #table [dataSource]="dataSource" class="mat-cell">
       <!--ID-->
-      <ng-container matColumnDef="naziv">
-        <mat-header-cell *matHeaderCellDef>NAZIV</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.naziv }}</mat-cell>
-      </ng-container>
-      <!--Naziv-->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+      </ng-container>
+        <!--Naziv-->
+      <ng-container matColumnDef="naziv">
+        <mat-header-cell *matHeaderCellDef>NAZIV</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.naziv }}</mat-cell>
       </ng-container>
       <!-- Proizvodjac -->
       <ng-container matColumnDef="proizvodjac">
@@ -27,10 +27,10 @@
           </button>
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i = index">
-          <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.naziv,row.proizvodjac)">
+          <button mat-icon-button color="primary" (click)="openDialog(2,row.id, row.naziv,row.proizvodjac)">
             <mat-icon color="primary" aria-label="Edit">edit</mat-icon>
           </button>
-          <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.naziv,row.proizvodjac)">
+          <button mat-icon-button color="primary" (click)="openDialog(3,row.id, row.naziv,row.proizvodjac)">
             <mat-icon color= "warn" aria-label="Delete">delete</mat-icon>
           </button>
         </mat-cell>

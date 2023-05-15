@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -13,18 +13,20 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { ArtiklComponent } from './components/main/artikl/artikl.component';
 import { DobavljacComponent } from './components/main/dobavljac/dobavljac.component';
 import { PorudzbinaComponent } from './components/main/porudzbina/porudzbina.component';
-import { AuthorComponent } from './components/utility/author/author.component';
+import { StavkaPorudzbineComponent } from './components/main/stavka-porudzbine/stavka-porudzbine.component';
 import { HomeComponent } from './components/utility/home/home.component';
 import { AboutComponent } from './components/utility/about/about.component';
+import { AuthorComponent } from './components/utility/author/author.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ArtiklDialogComponent } from './components/dialogs/artikl-dialog/artikl-dialog.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DobavljacDialogComponent } from './components/dialogs/dobavljac-dialog/dobavljac-dialog.component';
 
 
 @NgModule({
@@ -33,10 +35,12 @@ import {FormsModule} from '@angular/forms';
     ArtiklComponent,
     DobavljacComponent,
     PorudzbinaComponent,
-    AuthorComponent,
+    StavkaPorudzbineComponent,
     HomeComponent,
     AboutComponent,
-    ArtiklDialogComponent
+    AuthorComponent,
+    ArtiklDialogComponent,
+    DobavljacDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,11 +55,11 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     MatTableModule,
     MatToolbarModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    FormsModule,
+    MatFormFieldModule,
     MatInputModule,
-    MatFormFieldModule
+    FormsModule,
+    MatSnackBarModule,
+    MatDialogModule
 
   ],
   providers: [],

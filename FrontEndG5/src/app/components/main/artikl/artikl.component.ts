@@ -1,10 +1,10 @@
-import { ArtiklDialogComponent } from './../../dialogs/artikl-dialog/artikl-dialog.component';
-import { Artikl } from './../../../models/artikl';
-import { ArtiklService } from './../../../services/artikl.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { Artikl } from 'src/app/models/artikl';
+import { ArtiklService } from 'src/app/services/artikl.service';
+import { ArtiklDialogComponent } from '../../dialogs/artikl-dialog/artikl-dialog.component';
 
 @Component({
   selector: 'app-artikl',
@@ -12,18 +12,15 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./artikl.component.css']
 })
 export class ArtiklComponent implements OnInit,OnDestroy {
-  
-  displayedColumns = ['id', 'naziv','proizvodjac','actions'];
-  dataSource!: MatTableDataSource<Artikl>;
 
+  dataSource!: MatTableDataSource<Artikl>;
+  displayedColumns = ['id','naziv','proizvodjac','actions'];
   subscription!:Subscription;
 
-
   constructor(private artiklService: ArtiklService,
-              public dialog:MatDialog){
+              public dialog: MatDialog){
 
   }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -34,23 +31,19 @@ export class ArtiklComponent implements OnInit,OnDestroy {
 
   public loadData(){
     this.subscription = this.artiklService.getAllArtikls().subscribe(
-      data => {
-        //console.log(data);
-        this.dataSource = new MatTableDataSource(data)} 
-    ),
-    (error : Error) => {console.log(error.name + ' ' + error.message);}
+      data => {this.dataSource = new MatTableDataSource(data);}),
+      (error:Error) => {console.log(error.name + ' ' + error.message);}
   }
 
-  public openDialog(flag:number,id?:number, naziv?:string, proizvodjac?:string):void{
+  public openDialog(flag:number, id?:number, naziv?:string, proizvodjac?:string ):void{
     const dialogRef = this.dialog.open(ArtiklDialogComponent, {data:{id,naziv,proizvodjac}});
-    dialogRef.componentInstance.flag=flag;
+    dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(
       result =>{
-        if(result==1){
+        if(result == 1){
           this.loadData();
         }
       }
     )
   }
-
 }
