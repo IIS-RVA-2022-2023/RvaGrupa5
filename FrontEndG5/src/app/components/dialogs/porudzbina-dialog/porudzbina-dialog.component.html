@@ -23,15 +23,17 @@
        </div>
 
        <div class="form">
+        <mat-form-field>
             <input matInput placeholder="Iznos" name="Iznos" [(ngModel)]="data.iznos" 
-                [disabled]="flag==3" required/>
-            <span matSuffix>RSD</span>
+            [disabled]="flag==3" required/>
+        <span matSuffix>RSD</span>
+        </mat-form-field>
+           
        </div>
 
        <div class ="form">
-        <mat-form-field class="form-field">
+        <!-- Ovde je bila greska, pardon na prethodnom commit-u -->
             <mat-checkbox name="Placeno" [(ngModel)]="data.placeno" [disabled]="flag==3" required>Placeno</mat-checkbox>
-        </mat-form-field>
        </div>
 
        <div class="form">
