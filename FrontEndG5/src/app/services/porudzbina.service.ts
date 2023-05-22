@@ -20,7 +20,7 @@ export class PorudzbinaService {
   }
 
   public updatePorudzbina(porudzbina:Porudzbina):Observable<any>{
-    return this.httpClient.put(`${PORUDZBINA_URL}/${porudzbina.id}`,porudzbina);
+    return this.httpClient.post(`${PORUDZBINA_URL}/${porudzbina.id}`,porudzbina);
   }
 
   public deletePorudzbina(id:number):Observable<any>{

@@ -11,12 +11,12 @@
       </ng-container>
         <!--Datum Kreiranja-->
       <ng-container matColumnDef="datum">
-        <mat-header-cell *matHeaderCellDef>Datum Kreiranja</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Datum kreiranja</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.datum | date:'dd.MM.yyyy.' }}</mat-cell>
       </ng-container>
-      <!-- Isporuceno -->
+      <!--Datum Kreiranja-->
       <ng-container matColumnDef="isporuceno">
-        <mat-header-cell *matHeaderCellDef>Datum isporuke</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Datum Isporuke</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.isporuceno | date:'dd.MM.yyyy.' }}</mat-cell>
       </ng-container>
       <!-- Iznos -->
@@ -24,14 +24,11 @@
         <mat-header-cell *matHeaderCellDef>Iznos</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.iznos }}</mat-cell>
       </ng-container>
-
       <!-- Placeno -->
       <ng-container matColumnDef="placeno">
         <mat-header-cell *matHeaderCellDef>Placeno</mat-header-cell>
-        <mat-cell *matCellDef="let row" [style.color]="row.placeno == true ? 'green': 'red' "
-        >{{ row.placeno ? 'Da':'Ne'}}</mat-cell>
+        <mat-cell *matCellDef="let row">{{ row.placeno }}</mat-cell>
       </ng-container>
-
       <!-- Dobavljac -->
       <ng-container matColumnDef="dobavljac">
         <mat-header-cell *matHeaderCellDef>Dobavljac</mat-header-cell>
@@ -45,10 +42,10 @@
           </button>
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i = index">
-          <button mat-icon-button color="primary" (click)="openDialog(2,row.id,row.datum,row.isporuceno,row.iznos, row.placeno,row.dobavljac)">
+          <button mat-icon-button color="primary" (click)="openDialog(2,row.id, row.datum,row.isporuceno,row.iznos,row.placeno,row.dobavljac)">
             <mat-icon color="primary" aria-label="Edit">edit</mat-icon>
           </button>
-          <button mat-icon-button color="primary" (click)="openDialog(3,row.id,row.datum,row.isporuceno,row.iznos, row.placeno,row.dobavljac)">
+          <button mat-icon-button color="primary" (click)="openDialog(3,row.id, row.datum,row.isporuceno,row.iznos,row.placeno,row.dobavljac)">
             <mat-icon color= "warn" aria-label="Delete">delete</mat-icon>
           </button>
         </mat-cell>

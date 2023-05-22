@@ -1,19 +1,18 @@
-import { PorudzbinaDialogComponent } from './../../dialogs/porudzbina-dialog/porudzbina-dialog.component';
-import { Dobavljac } from 'src/app/models/dobavljac';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Dobavljac } from './../../../models/dobavljac';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Data } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Porudzbina } from 'src/app/models/porudzbina';
 import { PorudzbinaService } from 'src/app/services/porudzbina.service';
+import { PorudzbinaDialogComponent } from '../../dialogs/porudzbina-dialog/porudzbina-dialog.component';
 
 @Component({
   selector: 'app-porudzbina',
   templateUrl: './porudzbina.component.html',
   styleUrls: ['./porudzbina.component.css']
 })
-export class PorudzbinaComponent implements OnInit,OnDestroy {
+export class PorudzbinaComponent {
 
   dataSource!: MatTableDataSource<Porudzbina>;
   displayedColumns = ['id','datum','isporuceno','iznos','placeno','dobavljac','actions'];
@@ -33,16 +32,16 @@ export class PorudzbinaComponent implements OnInit,OnDestroy {
 
   public loadData(){
     this.subscription = this.porudzbinaService.getAllPorudzbinas().subscribe(
-      data => {this.dataSource = new MatTableDataSource(data);}),
+      data => {this.dataSource = new MatTableDataSource(data);
+              console.log(data)}),
       (error:Error) => {console.log(error.name + ' ' + error.message);}
   }
 
-  public openDialog(flag:number, id?:number, datum?:Date, isporuceno?:Date, iznos?:number,
-                                placeno?:boolean, dobavljac?:Dobavljac):void{
+  public openDialog(flag:number, id?:number, datum?:Date, isporuceno?:Date, iznos?:number, placeno?:boolean, dobavljac?:Dobavljac ):void{
     const dialogRef = this.dialog.open(PorudzbinaDialogComponent, {data:{id,datum,isporuceno,iznos,placeno,dobavljac}});
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(
-      result => {
+      result =>{
         if(result == 1){
           this.loadData();
         }
@@ -50,6 +49,3 @@ export class PorudzbinaComponent implements OnInit,OnDestroy {
     )
   }
 }
-
-  
-

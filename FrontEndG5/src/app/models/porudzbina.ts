@@ -1,4 +1,4 @@
-import { Dobavljac } from 'src/app/models/dobavljac';
+import { Dobavljac } from './dobavljac';
 export class Porudzbina{
     id!:number;
     datum!:Date;

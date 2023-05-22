@@ -14,24 +14,20 @@ import { PorudzbinaService } from 'src/app/services/porudzbina.service';
 export class PorudzbinaDialogComponent implements OnInit {
 
   flag!:number;
-  dobavljaci!:Dobavljac[];
+  dobavljaci!: Dobavljac[];
 
   constructor(public snackBar:MatSnackBar,
               public dialogRef: MatDialogRef<Porudzbina>,
               @Inject(MAT_DIALOG_DATA) public data: Porudzbina,
               public porudzbinaService:PorudzbinaService,
               public dobavljacService:DobavljacService){}
- 
-  ngOnInit(): void {
-      this.dobavljacService.getAllDobavljacs().subscribe(
-        data => {
-          this.dobavljaci = data;
-        }
-      )
-  }
 
-  public compare(a:any,b:any){
-    return a.id == b.id;
+  ngOnInit(): void {
+    this.dobavljacService.getAllDobavljacs().subscribe(
+      data => {
+        this.dobavljaci = data;
+      }
+    )
   }
 
 
@@ -75,5 +71,4 @@ public cancel():void{
   this.dialogRef.close();
   this.snackBar.open('Odustali ste od izmena', 'Ok', {duration:2500})
 }
-
 }
