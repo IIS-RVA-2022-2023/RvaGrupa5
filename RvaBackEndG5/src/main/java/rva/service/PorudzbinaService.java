@@ -24,19 +24,17 @@ public class PorudzbinaService {
 		return repo.findById(id);
 	}
 	
-	//Obelezje double/numeric
+	//Pretraga po numerickom obelezju
 	public Optional<List<Porudzbina>> getByIznosGreaterThan(double iznos){
-		Optional<List<Porudzbina>> lista = Optional.of(repo.findByIznosGreaterThanOrderById(iznos));
-		return lista;
+		return Optional.of(repo.findByIznosGreaterThanOrderById(iznos));
 	}
 	
-	//Obelezje boolean
-	public Optional<List<Porudzbina>> getByPlaceno(){
-		Optional<List<Porudzbina>> lista = Optional.of(repo.findByPlacenoTrue());
-		return lista;
+	//Pretraga po boolean obelezju
+	public Optional<List<Porudzbina>> getByPlacenoTrue(){
+		return Optional.of(repo.findByPlacenoIsTrue());
 	}
 	
-	//Pretraga po atributu dobavljac iz entity klase Porudzbina
+	//Pretraga po referenci koja predstavlja strani kljuc
 	public Optional<List<Porudzbina>> getByDobavljac(Dobavljac dobavljac){
 		return Optional.of(repo.findByDobavljac(dobavljac));
 	}
@@ -56,4 +54,6 @@ public class PorudzbinaService {
 	public void deleteById(long id) {
 		repo.deleteById(id);
 	}
+	
+	
 }

@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +22,9 @@ import rva.model.Porudzbina;
 import rva.service.DobavljacService;
 import rva.service.PorudzbinaService;
 
-//Defaultni resurs za sve mapping anotacije/metode
-@RequestMapping("porudzbina")
+@CrossOrigin
 @RestController
+@RequestMapping("porudzbina")
 public class PorudzbinaController {
 
 	@Autowired
@@ -39,7 +40,7 @@ public class PorudzbinaController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getPorudzbinaById(@PathVariable long id){
-		if(service.existsById(id)) {
+		if(service.getById(id).isPresent()) {
 			return ResponseEntity.ok(service.getById(id).get());
 		}else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -48,13 +49,13 @@ public class PorudzbinaController {
 	}
 	
 	@GetMapping("/iznos/{iznos}")
-	public ResponseEntity<?> getPorudzbinaByIznosGreaterThan(@PathVariable double iznos){
-		List<Porudzbina> lista = service.getByIznosGreaterThan(iznos).get();
-		if(!lista.isEmpty()) {
-			return ResponseEntity.ok(lista);
+	public ResponseEntity<?> getPorudzbinaByIzosGreaterThan(@PathVariable double iznos){
+		Optional<List<Porudzbina>> lista = service.getByIznosGreaterThan(iznos);
+		if(!lista.get().isEmpty()) {
+			return ResponseEntity.ok(lista.get());
 		}else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body("Resource with requested iznos greater than: " + iznos + " have not been found");
+					.body("Resources with iznos greater than: " + iznos + " have not been found");
 		}
 	}
 	
@@ -62,18 +63,25 @@ public class PorudzbinaController {
 	public ResponseEntity<?> getPorudzbinaByDobavljac(@PathVariable long id){
 		Optional<Dobavljac> dobavljac = dobavljacService.findById(id);
 		if(dobavljac.isPresent()) {
-			return ResponseEntity.ok(service.getByDobavljac(dobavljac.get()));
+			List<Porudzbina> lista = service.getByDobavljac(dobavljac.get()).get();
+			if(!lista.isEmpty()) {
+				return ResponseEntity.ok(lista);
+			}else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND)
+						.body("Resources with requested foreign key dobavljac: " + id + 
+								" do not exist");
+			}
 		}else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body("Resource with requested dobavljac: " + id + " has not been found");
+					.body("Dobavljac with ID: " + id + " does not exist");
 		}
 		
 	}
 	
+	
 	@PostMapping
 	public ResponseEntity<Porudzbina> createPorudzbina(@RequestBody Porudzbina porudzbina){
 		Porudzbina savedPorudzbina;
-		
 		if(!service.existsById(porudzbina.getId())) {
 			savedPorudzbina = service.save(porudzbina);
 		}else {
@@ -110,16 +118,20 @@ public class PorudzbinaController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deletePorudzbina(@PathVariable long id){
+	public ResponseEntity<String> deletePorudzbina(@PathVariable long id){
 		if(service.existsById(id)) {
 			service.deleteById(id);
 			return ResponseEntity.ok("Resource with ID: " + id + " has been deleted");
 		}else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body("Resource with requested ID: " + id + " has not been found");
+					.body("Resource with ID: " + id + " has not been found");
 		}
 	}
 	
 	
-
+	
+	
+	
+	
+	
 }

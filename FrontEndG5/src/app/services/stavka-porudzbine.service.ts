@@ -1,3 +1,4 @@
+import { STAVKE_ZA_PORUDZBINU_URL } from './../constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,6 +11,10 @@ import { StavkaPorudzbine } from '../models/stavka-porudzbine';
 export class StavkaPorudzbineService {
 
   constructor(private httpClient:HttpClient) { }
+
+  public getStavkeForPorudzbina(idPorudzbine:number):Observable<any>{
+    return this.httpClient.get(`${STAVKE_ZA_PORUDZBINU_URL}/${idPorudzbine}`);
+  }
 
   public getAllStavkaPorudzbines():Observable<any>{
     return this.httpClient.get(`${STAVKA_PORUDZBINE_URL}`);

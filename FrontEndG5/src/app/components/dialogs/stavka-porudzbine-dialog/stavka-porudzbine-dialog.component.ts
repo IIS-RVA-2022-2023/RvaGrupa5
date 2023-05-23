@@ -30,6 +30,9 @@ export class StavkaPorudzbineDialogComponent {
     )
   }
 
+public compare(a:any,b:any){
+  return a.id = b.id;
+}
 
 public add():void{
   this.stavkaPorudzbineService.addStavkaPorudzbine(this.data).subscribe(

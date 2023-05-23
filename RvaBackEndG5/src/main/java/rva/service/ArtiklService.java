@@ -14,18 +14,18 @@ public class ArtiklService {
 
 	@Autowired
 	private ArtiklRepository repo;
-
-	public List<Artikl> getAll() {
+	
+	public List<Artikl> findAll(){
 		return repo.findAll();
 	}
-
-	public Optional<Artikl> getById(long id) {
+	
+	public Optional<Artikl> findById(long id){
 		return repo.findById(id);
 	}
 	
-	public Optional<List<Artikl>> getByNaziv(String naziv){
-		Optional<List<Artikl>> artikli = Optional.of(repo.findByNazivContainingIgnoreCase(naziv));
-		return artikli;
+	public Optional<List<Artikl>> findByNaziv(String naziv){
+		Optional<List<Artikl>> lista = Optional.of(repo.findByNazivContainingIgnoreCase(naziv));
+		return lista;
 	}
 	
 	public Artikl save(Artikl artikl) {
@@ -33,12 +33,16 @@ public class ArtiklService {
 	}
 	
 	public boolean existsById(long id) {
-		return getById(id).isPresent();
+		if(findById(id).isPresent()) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	public void deleteById(long id) {
 		repo.deleteById(id);
 	}
 	
-
+	
 }

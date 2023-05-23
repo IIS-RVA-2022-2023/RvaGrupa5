@@ -20,20 +20,21 @@ public class Artikl implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@SequenceGenerator(name = "ARTIKL_ID_GENERATOR", sequenceName = "ARTIKL_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ARTIKL_ID_GENERATOR")
 	private long id;
+	
 	private String naziv;
 	private String proizvodjac;
-
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "artikl", cascade = CascadeType.REMOVE)
 	private List<StavkaPorudzbine> stavke;
-
+	
 	public Artikl() {
-
+		
 	}
 
 	public long getId() {
@@ -58,14 +59,6 @@ public class Artikl implements Serializable {
 
 	public void setProizvodjac(String proizvodjac) {
 		this.proizvodjac = proizvodjac;
-	}
-
-	public List<StavkaPorudzbine> getStavke() {
-		return stavke;
-	}
-
-	public void setStavke(List<StavkaPorudzbine> stavke) {
-		this.stavke = stavke;
 	}
 
 }

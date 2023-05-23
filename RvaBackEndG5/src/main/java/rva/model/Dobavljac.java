@@ -25,19 +25,18 @@ public class Dobavljac implements Serializable {
 	@SequenceGenerator(name = "DOBAVLJAC_ID_GENERATOR", sequenceName = "DOBAVLJAC_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DOBAVLJAC_ID_GENERATOR")
 	private long id;
-
 	private String naziv;
-	private String adresa;
 	private String kontakt;
-
+	private String adresa;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "dobavljac", cascade = CascadeType.REMOVE)
 	private List<Porudzbina> porudzbine;
 
 	public Dobavljac() {
-
+		
 	}
-
+	
 	public long getId() {
 		return id;
 	}
@@ -54,14 +53,6 @@ public class Dobavljac implements Serializable {
 		this.naziv = naziv;
 	}
 
-	public String getAdresa() {
-		return adresa;
-	}
-
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
-	}
-
 	public String getKontakt() {
 		return kontakt;
 	}
@@ -70,12 +61,12 @@ public class Dobavljac implements Serializable {
 		this.kontakt = kontakt;
 	}
 
-	public List<Porudzbina> getPorudzbine() {
-		return porudzbine;
+	public String getAdresa() {
+		return adresa;
 	}
 
-	public void setPorudzbine(List<Porudzbina> porudzbine) {
-		this.porudzbine = porudzbine;
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
 	}
 
 }

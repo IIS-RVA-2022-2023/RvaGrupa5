@@ -30,6 +30,9 @@ export class PorudzbinaDialogComponent implements OnInit {
     )
   }
 
+public compare(a:any,b:any){
+  return a.id == b.id;
+}
 
 public add():void{
   this.porudzbinaService.addPorudzbina(this.data).subscribe(
