@@ -25,7 +25,7 @@ export class StavkaPorudzbineService {
   }
 
   public updateStavkaPorudzbine(stavkaPorudzbine:StavkaPorudzbine):Observable<any>{
-    return this.httpClient.post(`${STAVKA_PORUDZBINE_URL}/${stavkaPorudzbine.id}`,stavkaPorudzbine);
+    return this.httpClient.put(`${STAVKA_PORUDZBINE_URL}/${stavkaPorudzbine.id}`,stavkaPorudzbine);
   }
 
   public deleteStavkaPorudzbine(id:number):Observable<any>{
